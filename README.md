@@ -87,8 +87,6 @@ Hệ thống kết hợp ma trận **Độ Khẩn cấp (Priority)** và **Độ
 
 **Lưu ý:** Sửa `BASE_URL` trong code Frontend thành IP máy tính để gọi được API.
 
-**Lưu ý:** Sửa `BASE_URL` trong code Frontend thành IP máy tính để gọi được API.
-
 ## 🛡️ Cấu hình Windows Firewall (Bắt buộc để kết nối Mobile - Frontend)
 
 Nếu bạn chạy Frontend trên Windows và muốn điện thoại (Expo) kết nối được, bạn cần mở cổng (Port) theo các bước sau:
