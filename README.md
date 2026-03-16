@@ -87,8 +87,6 @@ Hệ thống kết hợp ma trận **Độ Khẩn cấp (Priority)** và **Độ
 
 **Lưu ý:** Sửa `BASE_URL` trong code Frontend thành IP máy tính để gọi được API.
 
-**Lưu ý:** Sửa `BASE_URL` trong code Frontend thành IP máy tính để gọi được API.
-
 ## 🛡️ Cấu hình Windows Firewall (Bắt buộc để kết nối Mobile - Frontend)
 
 Nếu bạn chạy Frontend trên Windows và muốn điện thoại (Expo) kết nối được, bạn cần mở cổng (Port) theo các bước sau:
@@ -98,10 +96,10 @@ Nếu bạn chạy Frontend trên Windows và muốn điện thoại (Expo) kế
 3.  Chọn **Inbound Rules** (Quy tắc chiều vào) ở cột bên trái.
 4.  Nhìn sang cột bên phải ngoài cùng, chọn **New Rule...** (Quy tắc mới).
 5.  Chọn **Port** -> bấm **Next**.
-6.  Chọn **TCP**, ở ô _Specific local ports_ nhập cổng: `8080,8081,25060`
+6.  Chọn **TCP**, ở ô _Specific local ports_ nhập cổng: `8080,8081,14862`
     - _8080: Spring Boot Backend_
     - _8081: Expo Metro Bundler_
-    - _25060: Kết nối Database Aiven (nếu cần)_
+    - _14862: Kết nối Database Aiven (nếu cần)_
 7.  Bấm **Next**.
 8.  Chọn **Allow the connection** (Cho phép kết nối) -> bấm **Next**.
 9.  Tích chọn cả 3 ô (Domain, Private, Public) -> bấm **Next**.
