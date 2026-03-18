@@ -1,6 +1,6 @@
-# 🚀 TASH AUTOMATION
+# 🚀 TASK AUTOMATION
 
-**Tash Automation** là một hệ thống quản lý công việc và tự động hóa toàn diện, được thiết kế theo kiến trúc Microservices thu nhỏ. Hệ thống kết hợp sức mạnh xử lý dữ liệu của **Spring Boot**, trải nghiệm người dùng mượt mà của **React Native**, và khả năng tự động hóa cảnh báo mạnh mẽ của **n8n**.
+**Task Automation** là một hệ thống quản lý công việc và tự động hóa toàn diện, được thiết kế theo kiến trúc Microservices thu nhỏ. Hệ thống kết hợp sức mạnh xử lý dữ liệu của **Spring Boot**, trải nghiệm người dùng mượt mà của **React Native**, và khả năng tự động hóa cảnh báo mạnh mẽ của **n8n**.
 
 ---
 
