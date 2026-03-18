@@ -26,7 +26,7 @@ public class Task {
     private Long id;
 
     @Column(name ="user_id" , nullable = false)
-    private Long user_Id;
+    private Long userId;
 
     @Column(nullable = false)
     private String title;
