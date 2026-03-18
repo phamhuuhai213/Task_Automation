@@ -13,8 +13,8 @@ import com.task_automation.backend.enums.TaskStatus;
 @Repository
 public interface TaskRepository extends JpaRepository<Task , Long> {
     List<Task> findByUserId(Long userId);
-    List<Task> findByStatusNotAndDeadLineBefore(TaskStatus status, LocalDateTime now);
-    List<Task> findByStatusAndIsNotifiedFalseAndDeadineBetween(
+    List<Task> findByStatusNotAndDeadlineBefore(TaskStatus status, LocalDateTime now);
+    List<Task> findByStatusAndIsNotifiedFalseAndDeadlineBetween(
         TaskStatus status, LocalDateTime start, LocalDateTime end
     );
 }

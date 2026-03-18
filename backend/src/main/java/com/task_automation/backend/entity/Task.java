@@ -32,7 +32,7 @@ public class Task {
     private String title;
 
     @Column(columnDefinition = "Text")
-    private String desciption;
+    private String description;
 
     @Enumerated(EnumType.STRING)
     @Builder.Default
@@ -47,7 +47,7 @@ public class Task {
     private TaskImportance importance;
 
     @Column(nullable = false)
-    private LocalDateTime deadLine;
+    private LocalDateTime deadline;
 
     @Column(name = "is_notified")
     @Builder.Default
