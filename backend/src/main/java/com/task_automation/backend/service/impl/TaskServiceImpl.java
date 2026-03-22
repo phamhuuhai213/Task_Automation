@@ -40,4 +40,35 @@ public class TaskServiceImpl implements TaskService {
 
         return (3 - pScore)*3 + (4 - iScore);
     }
+    
+    @Override
+    public Task getTaskById(Long id) {
+        return taskRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Khong tim thay Task voi id: " + id));
+    }
+
+    @Override
+    public List<Task> getActiveTasksByUserId(Long userId) {
+        return taskRepository.findByUserId(userId).stream()
+        .filter(task -> task.getStatus() != com.task_automation.backend.enums.TaskStatus.BLOCKED)
+        .toList();
+    }
+    
+    @Override
+    public Task updateTask(Long id, Task taskDetails) {
+        Task task = getTaskById(id);
+        task.setTitle(taskDetails.getTitle());
+        task.setDescription(taskDetails.getDescription());
+        task.setStatus(taskDetails.getStatus());
+        task.setPriority(taskDetails.getPriority());
+        task.setImportance(taskDetails.getImportance());
+        task.setDeadline(taskDetails.getDeadline());
+        return taskRepository.save(task);
+    }
+
+    @Override
+    public void deleteTask(Long id) {
+        taskRepository.deleteById(id);        
+    }
+    
 }
