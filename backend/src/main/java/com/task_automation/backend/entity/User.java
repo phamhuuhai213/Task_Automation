@@ -39,10 +39,10 @@ public class User {
 
     String passwordHash;
 
-    @Column(nullable = false, length = 300)
+    @Column(nullable = false, length = 100)
     String fullName;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING) 
     Role role = Role.USER;
 
     @Enumerated(EnumType.STRING)
