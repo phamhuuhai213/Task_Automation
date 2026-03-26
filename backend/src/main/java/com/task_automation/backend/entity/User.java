@@ -2,6 +2,9 @@ package com.task_automation.backend.entity;
 
 import java.time.LocalDateTime;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import com.task_automation.backend.enums.AuthProvider;
 import com.task_automation.backend.enums.Role;
 
@@ -51,9 +54,10 @@ public class User {
     String providerId;
     Boolean isActive = true;
 
-    @Column(insertable = false, updatable = false)
+    @CreationTimestamp
+    @Column(updatable = false)
     LocalDateTime createdAt;
 
-    @Column(insertable = false, updatable = false)
+    @UpdateTimestamp
     LocalDateTime updatedAt;
 }
