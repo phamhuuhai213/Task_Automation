@@ -1,10 +1,15 @@
 package com.task_automation.backend.service.impl;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.task_automation.backend.config.JwtService;
+import com.task_automation.backend.dto.request.LoginRequest;
 import com.task_automation.backend.dto.request.RegisterRequest;
+import com.task_automation.backend.dto.response.AuthResponse;
 import com.task_automation.backend.dto.response.UserResponse;
 import com.task_automation.backend.entity.User;
 import com.task_automation.backend.enums.AuthProvider;
@@ -25,6 +30,8 @@ public class AuthServiceImpl implements AuthService {
     UserRepository userRepository;
     PasswordEncoder passwordEncoder;
     UserMapper userMapper;
+    AuthenticationManager authenticationManager;
+    JwtService jwtService;
 
     @Override
     public UserResponse register(RegisterRequest request) {
@@ -45,4 +52,19 @@ public class AuthServiceImpl implements AuthService {
         return userMapper.toUserResponse(saveUser);
     }
 
+    @Override
+    public AuthResponse login(LoginRequest request) {
+        authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(request.email(), request.password())
+        );
+
+        var user = userRepository.findByEmail(request.email())
+            .orElseThrow(() -> new AppException(HttpStatus.NOT_FOUND, "User not found!"));
+
+        var jwtToken = jwtService.generateToken(user);
+
+        return new AuthResponse(jwtToken, userMapper.toUserResponse(user));
+    }
+
+    
 }

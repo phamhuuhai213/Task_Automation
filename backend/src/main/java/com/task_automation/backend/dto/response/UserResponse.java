@@ -5,9 +5,9 @@ import java.time.LocalDateTime;
 import com.task_automation.backend.enums.Role;
 
 public record UserResponse(
-    Long id,
-    String email,
-    String fullName,
-    Role role,
-    LocalDateTime createdAt
-) {}
+        Long id,
+        String email,
+        String fullName,
+        Role role,
+        LocalDateTime createdAt) {
+}
