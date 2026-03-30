@@ -7,7 +7,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -41,25 +40,28 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
 
-        jwt = authHeader.substring(7);
+        jwt = authHeader.substring(7).trim();
 
-        userEmail = jwtService.extractUsername(jwt);
-
-        if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
-
-            if (jwtService.isTokenValid(jwt, userDetails)) {
-                UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
+        try {      
+            userEmail = jwtService.extractUsername(jwt);
+            
+            if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+                UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
+                
+                if (jwtService.isTokenValid(jwt, userDetails)) {
+                    UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         userDetails,
                         null,
                         userDetails.getAuthorities());
-
-                authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-
-                SecurityContextHolder.getContext().setAuthentication(authToken);
+                        
+                        authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                        
+                        SecurityContextHolder.getContext().setAuthentication(authToken);
+                    }
+                }     
+            } catch (Exception e) {
+                logger.error("Token không hợp lệ hoặc đã hết hạn: " + e.getMessage());
             }
-        }
-
         filterChain.doFilter(request, response);
     }
 }
